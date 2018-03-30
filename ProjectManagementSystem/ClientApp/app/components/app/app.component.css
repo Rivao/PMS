@@ -1,0 +1,11 @@
+#page-body {
+    min-width: 800px;
+    background-color: #cdd1c4;
+}
+.body-content {
+    margin-left: 50px;
+    padding: 20px;
+}
+li {
+    list-style-type: none;
+}

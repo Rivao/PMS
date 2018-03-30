@@ -1,0 +1,29 @@
+#mainNavBar {
+    height: 7vh;
+    min-width: 100%;
+    background-color: #4d5061;
+    padding-left: 30px;
+}
+#mainNavBar li {
+    padding: 10px;;
+    list-style-type: none;
+}
+ul {
+    display: flex;
+}
+a{
+    color: white;
+}
+li .glyphicon {
+    margin-right: 10px;
+}
+
+/* Highlighting rules for nav menu items */
+li.link-active a,
+li.link-active a:hover,
+li.link-active a:focus {
+    background-color: #30323d;
+    color: white;
+}
+/* Keep the nav menu independent of scrolling and on top of other items */
+

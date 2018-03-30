@@ -1,0 +1,18 @@
+
+#projects-header {
+    display: flex;
+    min-width: 100%;
+    justify-content: space-between;
+}
+
+#projects-body{
+    display: flex;
+}
+.project-box {
+    width: 250px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.project-box-body {
+    display: flex;
+}

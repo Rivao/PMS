@@ -1,0 +1,26 @@
+<form-template>
+    <form #userRegistrationForm="ngForm" (ngSubmit)="submit(userRegistrationForm.form);">
+        <label labelFor="first-name">First name</label>
+        <input type="text" class="form-control" name="first-name" [(ngModel)]="userData.FirstName" #firstNameField="ngModel" required>
+        <div class="alert alert-danger" [hidden]="firstNameField.untouched || firstNameField.valid">First name is required</div>
+
+        <label labelFor="last-name">Last name</label>
+        <input type="text" class="form-control" name="last-name" [(ngModel)]="userData.LastName" #lastNameField="ngModel" required>
+        <label labelFor="phone-number">Phone number</label>
+        <input type="number" class="form-control" name="phone-number" [(ngModel)]="userData.Phone" #phoneNumberField="ngModel" required>
+        <label labelFor="username">Username</label>
+        <input type="text" class="form-control" name="username" [(ngModel)]="userData.Username" #usernameField="ngModel">
+        <label labelFor="password">Password</label>
+        <input type="text" class="form-control" name="password" [(ngModel)]="userData.Password" #passwordField="ngModel" required>
+        <label labelFor="password-repeat">Repeat password</label>
+        <input type="text" class="form-control" name="password-repeat" ngModel #passwordRepeatField="ngModel" required>
+        <label labelFor="age">Age</label>
+        <input type="number" class="form-control" name="age" [(ngModel)]="userData.Age" #ageField="ngModel">
+        <label labelFor="country">Country</label>
+        <input type="text" class="form-control" name="country" [(ngModel)]="userData.Country" #countryField="ngModel" required>
+        <label labelFor="e-mail">E-mail address</label>
+        <input type="text" class="form-control" name="e-mail" [(ngModel)]="userData.Email" #eMailField="ngModel" required>
+
+        <button class="btn btn-primary" [disabled]="!userRegistrationForm.valid">Submit</button>
+    </form>
+</form-template>
