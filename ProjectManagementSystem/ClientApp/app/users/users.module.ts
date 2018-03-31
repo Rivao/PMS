@@ -6,6 +6,9 @@ import { RegisterUser } from './registration/registration.users';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../components/sharedServices/user.service';
 import { FormComponent } from '../components/forms/form/form.component';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from '../components/sharedServices/auth/auth.service';
+import { AuthGuardService } from '../components/sharedServices/auth/auth-guard.service';
 
 @NgModule({
 
@@ -16,11 +19,14 @@ import { FormComponent } from '../components/forms/form/form.component';
 
   declarations: [
     RegisterUser,
-    FormComponent
+    FormComponent,
+    LoginComponent
   ],
 
   providers: [ //for dependency injection
-    UserService
+    UserService,
+    AuthService,
+    AuthGuardService,
   ]
 
 })

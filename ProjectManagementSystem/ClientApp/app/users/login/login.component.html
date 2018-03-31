@@ -1,0 +1,12 @@
+<form-template>
+    <form #loginForm="ngForm" (ngSubmit)="submit(loginForm.form);">
+        <label labelFor="e-mail">E-mail address</label>
+        <input type="text" class="form-control" name="e-mail" [(ngModel)]="userData.Email" #eMailField="ngModel" required>
+
+        <label labelFor="password">Password</label>
+        <input type="text" class="form-control" name="password" [(ngModel)]="userData.Password" #passwordField="ngModel" required>
+        
+
+        <button class="btn btn-primary" [disabled]="!loginForm.valid">Submit</button>
+    </form>
+</form-template>
