@@ -84,15 +84,30 @@ namespace ProjectManagementSystem.Controllers
         // POST: api/Companies
         [HttpPost]
         public async Task<IActionResult> PostCompany([FromBody] Company company)
-        {
+        {  
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            company.Subscription = Subscription.Free;
 
             _context.Company.Add(company);
             await _context.SaveChangesAsync();
 
+            var memberList = new List<CompanyMember>
+            {
+                new CompanyMember 
+                {
+                    UserID = company.OwnerId,
+                    CompanyID = company.ID,
+                    Role = Role.Owner 
+                }
+            };
+            company.CompanyMembers = memberList;
+            
+            _context.Entry(company).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            
             return CreatedAtAction("GetCompany", new { id = company.ID }, company);
         }
 

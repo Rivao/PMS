@@ -1,5 +1,5 @@
 <form-template>
-    <form #userRegistrationForm="ngForm" (ngSubmit)="submit(userRegistrationForm.form);">
+    <form #userRegistrationForm="ngForm" (ngSubmit)="submitUser(userRegistrationForm.form)" *ngIf="!openCompanyForm">
         <label labelFor="first-name">First name</label>
         <input type="text" class="form-control" name="first-name" [(ngModel)]="userData.FirstName" #firstNameField="ngModel" required>
         <div class="alert alert-danger" [hidden]="firstNameField.untouched || firstNameField.valid">First name is required</div>
@@ -22,5 +22,16 @@
         <input type="text" class="form-control" name="e-mail" [(ngModel)]="userData.Email" #eMailField="ngModel" required>
 
         <button class="btn btn-primary" [disabled]="!userRegistrationForm.valid">Submit</button>
+    </form>
+
+    <form #companyRegistrationForm="ngForm" (ngSubmit)="submitCompany()" *ngIf="openCompanyForm">
+        <label labelFor="company-name">Company name</label>
+        <input type="text" class="form-control" name="company-name" [(ngModel)]="companyData.name" #companyName="ngModel" required>
+        <div class="alert alert-danger" [hidden]="companyName.untouched || companyName.valid">Company name is required</div>
+
+        <label labelFor="subscription">Subscription</label>
+        <input type="text" class="form-control" name="subscription" [(ngModel)]="companyData.subscription" #subscription="ngModel" required>
+
+        <button class="btn btn-primary" [disabled]="!companyRegistrationForm.valid">Submit</button>
     </form>
 </form-template>

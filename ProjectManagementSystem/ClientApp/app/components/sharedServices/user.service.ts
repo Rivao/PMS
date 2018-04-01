@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { IUser } from "../interfaces/user.interface";
 import { isPlatformBrowser, isPlatformServer } from "@angular/common";
+import { ICompany } from "../interfaces/company.interface";
 
 
 
@@ -27,9 +28,14 @@ export class UserService {
         return this.http.post("/api/Users", user);
     }
 
+    saveCompany(company: ICompany) {
+
+        return this.http.post('/api/Companies', company);
+    }
+
     loginUser(user: IUser) {
 
-        return this.http.post("/api/auth", user)
+        return this.http.post("/api/Auth", user)
         .map(response => {
             const data = response.json();
             return data;
@@ -41,14 +47,14 @@ export class UserService {
         }
     }
 
-    getUserId() {console.log('getting it '+this.localstorage);
+    getUserId(): any {console.log('GETTING THE FUCKING DATA');
     
-        if(this.localstorage){
+        if(this.localstorage){console.log('I WILL GET' + localStorage.getItem('User'));
             return localStorage.getItem('User');
         }
     }
 
-    setUserId(id: any) {console.log('setting it '+id);
+    setUserId(id: any) {console.log('SETTING THE FUCKING DATA');
 
         if(this.localstorage){
             localStorage.setItem("User", JSON.stringify(id));

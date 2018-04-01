@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ProjectManagementSystem.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,6 +17,7 @@ namespace ProjectManagementSystem.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     MemberCount = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: false),
+                    OwnerId = table.Column<int>(nullable: false),
                     Subscription = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -30,14 +31,14 @@ namespace ProjectManagementSystem.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Age = table.Column<int>(nullable: false),
+                    Age = table.Column<int>(nullable: true),
                     Country = table.Column<string>(nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     Email = table.Column<string>(nullable: false),
                     FirstName = table.Column<string>(nullable: false),
                     LastName = table.Column<string>(nullable: false),
                     Password = table.Column<string>(nullable: false),
-                    Phone = table.Column<int>(nullable: false),
+                    Phone = table.Column<string>(nullable: true),
                     Username = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -73,6 +74,12 @@ namespace ProjectManagementSystem.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Company_Name",
+                table: "Company",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CompanyMember_CompanyID",
                 table: "CompanyMember",
                 column: "CompanyID");
@@ -81,6 +88,13 @@ namespace ProjectManagementSystem.Migrations
                 name: "IX_CompanyMember_UserID",
                 table: "CompanyMember",
                 column: "UserID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_Phone_Email_Username",
+                table: "User",
+                columns: new[] { "Phone", "Email", "Username" },
+                unique: true,
+                filter: "[Phone] IS NOT NULL AND [Username] IS NOT NULL");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -20,8 +20,7 @@ namespace ProjectManagementSystem.Models
         [Required]
         public Subscription Subscription { get; set; } 
         public int MemberCount { get; set; }
-        [Required]
-
+        public int OwnerId { get; set; }
         public virtual ICollection<CompanyMember> CompanyMembers { get; set; }
     }
 }

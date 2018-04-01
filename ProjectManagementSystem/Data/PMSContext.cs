@@ -23,7 +23,8 @@ namespace ProjectManagementSystem.Models
             modelBuilder.Entity<Company>()
                 .HasIndex(c => c.Name)
                 .IsUnique();
-        }
+            }
+            
 
         public DbSet<ProjectManagementSystem.Models.Company> Company { get; set; }
 

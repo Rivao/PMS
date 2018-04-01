@@ -11,8 +11,8 @@ using System;
 namespace ProjectManagementSystem.Migrations
 {
     [DbContext(typeof(PMSContext))]
-    [Migration("20180304201317_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20180401122427_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,9 +31,14 @@ namespace ProjectManagementSystem.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
+                    b.Property<int>("OwnerId");
+
                     b.Property<int>("Subscription");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Company");
                 });
@@ -63,7 +68,7 @@ namespace ProjectManagementSystem.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("Age");
+                    b.Property<int?>("Age");
 
                     b.Property<string>("Country")
                         .IsRequired();
@@ -82,11 +87,15 @@ namespace ProjectManagementSystem.Migrations
                     b.Property<string>("Password")
                         .IsRequired();
 
-                    b.Property<int>("Phone");
+                    b.Property<string>("Phone");
 
                     b.Property<string>("Username");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("Phone", "Email", "Username")
+                        .IsUnique()
+                        .HasFilter("[Phone] IS NOT NULL AND [Username] IS NOT NULL");
 
                     b.ToTable("User");
                 });
